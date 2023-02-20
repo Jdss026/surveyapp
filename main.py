@@ -3,12 +3,22 @@ import boto3
 import csv
 import uuid
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+
+# Load environment keys
+load_dotenv()
+import os
+
+aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
+aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
+
 
 # Connect to S3
-s3 = boto3.client('s3', aws_access_key_id='<your_access_key>', aws_secret_access_key='<your_secret_key>')
+s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
 
 # Define the S3 bucket where the survey responses will be stored
-bucket_name = '<your_bucket_name>'
+bucket_name = 'surveyappproject-bucket'
 
 # Define a function to create the CSV filename based on the survey name and current date/time
 def create_csv_filename(survey_name):
